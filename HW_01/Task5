@@ -20,4 +20,4 @@ if place_letter1 != place_letter2:
     print("Между {} и {} стоит вот сколько букв: {} " .format(user_letter1, user_letter2, diff_btw_places))
 else:
     print("Место введенной буквы ", place_letter1)
-    print("Между первой и второй буквой не стоит никаких букв:)")
+    print("Между первой и второй буквой не стоит никаких букв")
