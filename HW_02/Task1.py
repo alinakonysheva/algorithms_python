@@ -22,6 +22,7 @@ def arith(num1, num2, operat):
         return num1 + num2
 
 
+# выставляем ненулевой маркер того, что будем работать в while
 operation = 1
 
 print("Перед Вами простой калькулятор")
@@ -32,16 +33,18 @@ while True:
     number2 = float(input("Введите, пожалуйста, второе число    "))
     operation = str(input("Что делаем? /, *, -, + или 0, если хотите выйти   "))
 
+# делаем проверку
     while operation != '0'and operation != '/' and operation != '*' and operation != '-' and operation != '+':
         print("Введите, пожалуйста, корректное значение")
         operation = str(input("Что делаем? /, *, -, + или 0, если хотите выйти   "))
 
+# выходим, если введен "0"
     if operation == '0':
         break
-
+# делаем проверку на деление на "0"
     elif operation == '/' and number2 == 0:
         print("Деление на ноль -- неудачная идея")
-
+# возвращаем значение функции arith для безопасных аргументов
     else:
         print(arith(number1, number2, operation))
 
