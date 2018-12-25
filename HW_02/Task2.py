@@ -12,8 +12,10 @@ while number > 0:
     number_without_last = int(number/10)
     last_numeral = number - 10 * number_without_last
 
+# выбираем четные
     if last_numeral % 2 == 0:
         evens = evens + 1
+# выбираем нечетные
     else:
         odds = odds + 1
 
