@@ -8,7 +8,7 @@ reverse_number = 0
 while number > 0:
     number_without_last = int(number/10)
     last_numeral = number - 10 * number_without_last
-# переворачиваем число
+# переворачиваем число и накапливаем его
     reverse_number = reverse_number*10 + last_numeral
     number = number_without_last
 

@@ -18,7 +18,7 @@ def arith(num1, num2, operat):
     elif operat == '-':
         return num1 - num2
 
-    elif operat == '+':
+    else:
         return num1 + num2
 
 
@@ -31,11 +31,11 @@ while True:
 
     number1 = float(input("Введите, пожалуйста, первое число   "))
     number2 = float(input("Введите, пожалуйста, второе число    "))
-    operation = str(input("Что делаем? /, *, -, + или 0, если хотите выйти   "))
+    operation = str(input("Что делаем? Введите /, *, -, + или 0, если хотите выйти   "))
 
 # делаем проверку
     while operation != '0'and operation != '/' and operation != '*' and operation != '-' and operation != '+':
-        print("Введите, пожалуйста, корректное значение")
+        print("Введите, пожалуйста, значение из указанных")
         operation = str(input("Что делаем? /, *, -, + или 0, если хотите выйти   "))
 
 # выходим, если введен "0"
