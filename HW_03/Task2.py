@@ -4,14 +4,22 @@
 # т.к. именно в этих позициях первого массива стоят четные числа.
 
 # заводим массив в котором будем искать четные числа:
-list_init = [0, 3, 5, 6, 6, 4, 2, 13, 9, 56, 24]
+import random
+
+
+SIZE = 10
+MIN_ITEM = 0
+MAX_ITEM = 100
+array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
+print(array)
+
 # пустой массив для индексов:
 list_with_index = []
 
 # Перебираем по индексу, ищем четные эелементы массива и записываем индекс в массив с индексами:
 
-for i in range(len(list_init)):
-    if list_init[i] % 2 == 0:
+for i in range(len(array)):
+    if array[i] % 2 == 0:
         list_with_index.append(i)
 
 print(list_with_index)
