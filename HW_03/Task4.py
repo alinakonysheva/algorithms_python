@@ -20,5 +20,5 @@ for i in list_init:
         max_count = counter_elements[i]
         max_item = i
 
-print(f"Самый часто встречающийся элемент в массиве это {max_item}, который встречается {max_count} раз(а)")
+print(f"Самый часто встречающийся элемент в массиве это {max_item}, встречается {max_count} раз(а)")
 
