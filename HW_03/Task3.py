@@ -3,7 +3,6 @@
 # заводим тестовый массив
 import random
 
-
 SIZE = 10
 MIN_ITEM = 0
 MAX_ITEM = 100
