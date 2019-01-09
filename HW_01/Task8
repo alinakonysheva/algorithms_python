@@ -22,4 +22,3 @@ if year % 4 == 0:
 
 else:
     print(f"{year} {non_leap_year}")
-
