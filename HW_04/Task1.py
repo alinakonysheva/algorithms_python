@@ -1,17 +1,18 @@
 # 1. Проанализировать скорость и сложность одного любого алгоритма, разработанных в рамках домашнего
 # задания первых трех уроков.
 # Примечание: попробуйте написать несколько реализаций алгоритма и сравнить их.
+import cProfile
 
 # Task5, HW_3. В массиве найти максимальный отрицательный элемент. Вывести на экран его значение и позицию в массиве.
 
 # 1-е решение:
 import random
 
-SIZE = 5
+SIZE = 10000000
 MIN_ITEM = -100
 MAX_ITEM = 100
 array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
-print(array)
+# print(array)
 
 
 def search_max_negative_1(list_init):
@@ -67,3 +68,7 @@ def search_max_negative_3(list_init):
 # eggs = search_max_negative_3(array)
 # print(f" 3-й метод. Максимальный отрицательный элемент в массиве: {eggs[0]}")
 # print(f" 3-й метод. Место максимального отрицательного элемента в массиве: {eggs[1]}")
+
+cProfile.run('search_max_negative_1(array)')
+cProfile.run('search_max_negative_2(array)')
+cProfile.run('search_max_negative_3(array)')
