@@ -8,7 +8,7 @@ import cProfile
 # 1-е решение:
 import random
 
-SIZE = 10000000
+SIZE = 1000
 MIN_ITEM = -100
 MAX_ITEM = 100
 array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
