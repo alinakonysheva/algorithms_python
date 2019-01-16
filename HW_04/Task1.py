@@ -2,16 +2,18 @@
 # задания первых трех уроков.
 # Примечание: попробуйте написать несколько реализаций алгоритма и сравнить их.
 import cProfile
-
+####################################################################################################################
 # Task5, HW_3. В массиве найти максимальный отрицательный элемент. Вывести на экран его значение и позицию в массиве.
-
+####################################################################################################################
 # 1-е решение:
 import random
 
-SIZE = 1000
+SIZE = 1000000
 MIN_ITEM = -100
 MAX_ITEM = 100
 array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
+
+
 # print(array)
 
 
@@ -52,7 +54,6 @@ def search_max_negative_2(list_init):
 # print(f" 2-й метод. Место максимального отрицательного элемента в массиве: {spam[1]}")
 
 
-
 # 3-e решение:
 def search_max_negative_3(list_init):
     array_negative = []
@@ -72,3 +73,4 @@ def search_max_negative_3(list_init):
 cProfile.run('search_max_negative_1(array)')
 cProfile.run('search_max_negative_2(array)')
 cProfile.run('search_max_negative_3(array)')
+# Выводы приложила в файле pdf, на github

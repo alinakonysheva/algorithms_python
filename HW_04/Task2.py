@@ -5,7 +5,6 @@
 # Проанализировать скорость и сложность алгоритмов.
 # Результаты анализа сохранить в виде комментариев в файле с кодом.
 
-# python -m timeit -n 100 -s "import Task2" "get_prime_number_1(10)" - для профилирования
 import math
 
 
@@ -17,11 +16,11 @@ def get_prime_number_1(place):
         # убираем 1 и 0, они не являются простыми числами
         sieve[0:1] = [False, False]
         # перебираем числа:
-        for start in range(2, max_prime_number + 1):
+        for first in range(2, max_prime_number + 1):
             # смотрим на место числа в решете
-            if sieve[start]:
-                # вычеркиваем числа из решета с шагом в это число (c шагом в start)
-                for i in range(2 * start, max_prime_number + 1, start):
+            if sieve[first]:
+                # вычеркиваем числа из решета с шагом в это число (c шагом в first)
+                for i in range(2 * first, max_prime_number + 1, first):
                     sieve[i] = False
         primes = []
         # формируем массив простых чисел
@@ -86,7 +85,23 @@ def get_prime_number_2(place):
     prime_number = sieve_of_atkin(limit_prime_number)[index]
     return prime_number
 
-
 # Проверка на одинаковорабочесть:
 # print(get_prime_number_1(100))
 # print(get_prime_number_2(100))
+#########################################################################
+# Профилирование
+#########################################################################
+# python -m timeit -n 100 -s "import Task2" "Task2.get_prime_number_1()" - для профилирования
+# 100 loops, best of 5: 950 usec per loop - 50
+# 100 loops, best of 5: 3.9 msec per loop - 100
+# 100 loops, best of 5: 16.3 msec per loop - 200
+# 100 loops, best of 5: 67.2 msec per loop - 400
+# 100 loops, best of 5: 318 msec per loop - 800
+# python -m timeit -n 100 -s "import Task2" "Task2.get_prime_number_2()" - для профилирования
+# 100 loops, best of 5: 6.25 msec per loop - 50
+# 100 loops, best of 5: 24.5 msec per loop - 100
+# 100 loops, best of 5: 102 msec per loop - 200
+# 100 loops, best of 5: 417 msec per loop - 400
+# 100 loops, best of 5: 1.74 sec per loop - 800
+#
+# Выводы приложила в файле pdf, на github
