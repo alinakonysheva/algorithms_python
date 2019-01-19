@@ -12,19 +12,19 @@ import math
 def get_prime_number_1(place):
     def sieve_of_eratosthenes(max_prime_number):
         # формируем массив с правдами, решето, которое пока пропускает все
-        sieve = [True for _ in range(max_prime_number + 1)]
+        sieve = [True for _ in range(max_prime_number + 2)]
         # убираем 1 и 0, они не являются простыми числами
         sieve[0:1] = [False, False]
         # перебираем числа:
-        for first in range(2, max_prime_number + 1):
+        for first in range(2, max_prime_number + 2):
             # смотрим на место числа в решете
             if sieve[first]:
                 # вычеркиваем числа из решета с шагом в это число (c шагом в first)
-                for i in range(2 * first, max_prime_number + 1, first):
+                for i in range(2 * first, max_prime_number + 2, first):
                     sieve[i] = False
         primes = []
         # формируем массив простых чисел
-        for i in range(2, max_prime_number + 1):
+        for i in range(2, max_prime_number + 2):
             if sieve[i]:
                 primes.append(i)
         return primes
@@ -86,8 +86,8 @@ def get_prime_number_2(place):
     return prime_number
 
 # Проверка на одинаковорабочесть:
-# print(get_prime_number_1(100))
-# print(get_prime_number_2(100))
+print(get_prime_number_1(5))
+# print(get_prime_number_2(1))
 #########################################################################
 # Профилирование
 #########################################################################
