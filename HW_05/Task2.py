@@ -86,4 +86,7 @@ def move_to_hexadecimal(list1):
     return list_hex
 
 
-print(f'Результат сложения Ваших чисел: {move_to_hexadecimal(reversing(summ(eggs, spam)))}')
+result_summ = move_to_hexadecimal(reversing(summ(eggs, spam)))
+print('Результат сложения Ваших чисел: ',  end='')
+for element in result_summ:
+    print(f'{element}', end='')
