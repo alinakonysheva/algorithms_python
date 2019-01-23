@@ -5,16 +5,14 @@
 import collections
 
 print('Воспользуемся калькулятором для шестнадцатиричных чисел?')
-print('Введите, пожалуйста, два числа, для того, чтобы получить их результат сложения и умножения')
-# получаем пару значений от пользователя и преобразуем в очередь
+print('Введите, пожалуйста, два числа, чтобы получить их результат сложения и умножения')
+# Получаем пару значений от пользователя и преобразуем в очередь
 number1 = collections.deque(list(input("Ваше первое шестнадцатиричное число:   ")))
 number2 = collections.deque(list(input("Ваше второе шестнадцатиричное число:   ")))
 
 
-# print(number1, number2)
-
-
-# функция для уравнивания длин массивов use extendleft(iterable)
+# функция для уравнивания длин массивов,
+# так как будем складывать в столбик, заполняем нулями те разряды, которых нет у одного массива, но есть у другого:
 def equal_length(deque1, deque2):
     if len(deque1) != len(deque2):
         if len(deque1) > len(deque2):
@@ -28,11 +26,11 @@ def equal_length(deque1, deque2):
     return deque1, deque2
 
 
-print(equal_length(number1, number2))
+equal_length(number1, number2)
 letters_into_numbers = {'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15}
 
 
-# переводим все в цифрое значение
+# Переделываем массивы, присваивая буквам числа:
 def move_to_decimal(deque):
     deque_only_decimal = deque.copy()
     for i, element in enumerate(deque):
@@ -42,11 +40,7 @@ def move_to_decimal(deque):
     return deque_only_decimal
 
 
-print(f' Приводим все к цифрам первое число: {move_to_decimal(number1)}')
-print(f' Приводим все к цифрам второе число: {move_to_decimal(number2)}')
-
-
-# переворачиваем поэлементно, чтобы использовать дальше:
+# Переворачиваем поэлементно, чтобы использовать дальше:
 def reversing(deque):
     deque.reverse()
     eggs = deque
@@ -55,14 +49,12 @@ def reversing(deque):
 
 eggs = reversing(move_to_decimal(number1))
 spam = reversing(move_to_decimal(number2))
-print(f' Переворачиваем первое {eggs}')
-print(f' Переворачиваем второе {spam}')
 
 
-# складываем поэлементно, если результат сложения меньше или равен 9, оставляем его,
-# если больше 9 и меньше 16 -- присваиваем букву, если больше 16, то вычитаем 16, и присваиваем остатку значение
-# по освоенной сверху методе, при этом перебрасывая 1 на следующий элемент
-# как перебросить на другой элемент 1?
+# складываем поэлементно, если результат сложения меньше или равен 15, оставляем его,
+# если больше 15, то вычитаем 16, остаток от вычитания складываем в результирующую позицию в массиве суммы,
+# при этом прибавляем 1 к следующему элементу массива или создаем дополнительный элемент в результирующем массиве
+# со значением 1,если вышли за длинну массивов, которых складываем
 def summ(deque1, deque2):
     summ = []
     for i, element1 in enumerate(deque1):
@@ -84,6 +76,7 @@ def summ(deque1, deque2):
 numbers_into_letters = {10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
 
 
+# результирующий массив приводим к шестнадцатиричному цифро-буквенному виду:
 def move_to_hexadecimal(list1):
     list_hex = list1.copy()
     for i, element in enumerate(list1):
@@ -91,5 +84,6 @@ def move_to_hexadecimal(list1):
             list_hex.insert(i, numbers_into_letters[element])
             del list_hex[i + 1]
     return list_hex
+
 
 print(f'Результат сложения Ваших чисел: {move_to_hexadecimal(reversing(summ(eggs, spam)))}')
