@@ -29,7 +29,7 @@ def equal_length(deque1, deque2):
 
 
 print(equal_length(number1, number2))
-dict_sixteen = {'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15}
+letters_into_numbers = {'A': 10, 'B': 11, 'C': 12, 'D': 13, 'E': 14, 'F': 15}
 
 
 # переводим все в цифрое значение
@@ -37,7 +37,7 @@ def move_to_decimal(deque):
     deque_only_decimal = deque.copy()
     for i, element in enumerate(deque):
         if ord(str(element)) > ord('9'):
-            deque_only_decimal.insert(i, dict_sixteen[element.upper()])
+            deque_only_decimal.insert(i, letters_into_numbers[element.upper()])
             del deque_only_decimal[i + 1]
     return deque_only_decimal
 
@@ -53,30 +53,43 @@ def reversing(deque):
     return eggs
 
 
-print(f' Переворачиваем первое {reversing(move_to_decimal(number1))}')
-print(f' Переворачиваем второе {reversing(move_to_decimal(number2))}')
+eggs = reversing(move_to_decimal(number1))
+spam = reversing(move_to_decimal(number2))
+print(f' Переворачиваем первое {eggs}')
+print(f' Переворачиваем второе {spam}')
 
 
 # складываем поэлементно, если результат сложения меньше или равен 9, оставляем его,
-# если больше 9 и меньше 16 -- присваиваем букву, если больше 16, то вычитаем 16, и присваиваем значение
-# по этой же технике, при этом перебрасывая 1 на следующий элемент
-def summ():
-    pass
+# если больше 9 и меньше 16 -- присваиваем букву, если больше 16, то вычитаем 16, и присваиваем остатку значение
+# по освоенной сверху методе, при этом перебрасывая 1 на следующий элемент
+# как перебросить на другой элемент 1?
+def summ(deque1, deque2):
+    summ = []
+    for i, element1 in enumerate(deque1):
+        for j, element2 in enumerate(deque2):
+            if i == j:
+                sum_element = int(element1) + int(element2)
+                if sum_element <= 15:
+                    summ.append(sum_element)
+                else:
+                    sum_element = sum_element - 16
+                    summ.append(sum_element)
+                    if i != len(deque1) - 1:
+                        deque1[i + 1] = int(deque1[i + 1]) + 1
+                    else:
+                        summ.append(1)
+    return summ
 
-# переворачиваем массивы для удобства работы со степенями
-# def reverse(deque1, deque2):
-#   deque1_reversed = deque1.reverse()
-#   deque2_reversed = deque2.reverse()
-#    return deque1_reversed, deque2_reversed
+
+numbers_into_letters = {10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
 
 
-# print(reverse(number1, number2))
+def move_to_hexadecimal(list1):
+    list_hex = list1.copy()
+    for i, element in enumerate(list1):
+        if element > 9:
+            list_hex.insert(i, numbers_into_letters[element])
+            del list_hex[i + 1]
+    return list_hex
 
-# def turn_into_numeral(deque1_reversed, deque2_reversed):
-#    for i, element in enumerate(deque1_reversed):
-#       if element > 9:
-
-
-# def move_to_decimal(deque1_reversed):
-# for i in range(0, len(deque1_reversed)):
-# d['1']
+print(f'Результат сложения Ваших чисел: {move_to_hexadecimal(reversing(summ(eggs, spam)))}')
