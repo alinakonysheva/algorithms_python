@@ -22,3 +22,7 @@ for i in range(len(array)):
         list_with_index.append(i)
 
 print(list_with_index)
+
+# или
+print([i for i in range(len(array)) if array[i] % 2 == 0])
+

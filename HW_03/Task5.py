@@ -26,5 +26,8 @@ def search_max_negative(list_init):
     return - min_item, list_init.index(- min_item)
 
 
-print(f" Максимальное отрицательный элемент в массиве: {search_max_negative(array)[0]}")
-print(f" Место максимального отрицательного элемента в массиве: {search_max_negative(array)[1]}")
+eggs = search_max_negative(array)
+print(f" Максимальное отрицательный элемент в массиве: {eggs[0]}")
+print(f" Место максимального отрицательного элемента в массиве: {eggs[1]}")
+
+# поменять алгоритм

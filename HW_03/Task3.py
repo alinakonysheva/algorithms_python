@@ -20,6 +20,9 @@ for i in range(len(array)):
     if array[i] < min_item[1]:
         min_item = [i, array[i]]
 
+# Переделать со словарем, вроде max_item = {'index': 0, 'num': array[0]}
+# pop, insert -- убрать, плохая практика потому что они медленные
+
 # вставляем максимальный элемент на место минимального
 array.insert(min_item[0], max_item[1])
 # удаляем минимальный с его места

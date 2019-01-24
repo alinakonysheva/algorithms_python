@@ -43,3 +43,15 @@ print(f"шести равно: {int_6}")
 print(f"семи равно: {int_7}")
 print(f"восьми равно: {int_8}")
 print(f"девяти равно: {int_9}")
+
+# или:
+start_num = 2
+last_num = 99
+start_div = 2
+end_div = 9
+for i in range(start_div, end_div + 1):
+    freq = 0
+    for j in range(start_num, last_num + 1):
+        if j % i == 0:
+            freq += 1
+    print(f' Числу {i} кратно {freq} чисел')

@@ -9,8 +9,8 @@ print("нужно ввести две маленькие латинские бу
 user_letter1 = str(input("Введите, пожалуйста, первую букву   "))
 user_letter2 = str(input("Введите, пожалуйста, вторую букву   "))
 
-place_letter1 = ord(user_letter1) - 96
-place_letter2 = ord(user_letter2) - 96
+place_letter1 = ord(user_letter1) - ord('a')
+place_letter2 = ord(user_letter2) - ord('a')
 
 if place_letter1 != place_letter2:
     diff_btw_places = abs(place_letter1 - place_letter2) - 1
