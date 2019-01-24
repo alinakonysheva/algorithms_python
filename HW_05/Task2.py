@@ -87,6 +87,31 @@ def move_to_hexadecimal(list1):
 
 
 result_summ = move_to_hexadecimal(reversing(summ(eggs, spam)))
-print('Результат сложения Ваших чисел: ',  end='')
+print('Результат сложения Ваших чисел: ', end='')
 for element in result_summ:
     print(f'{element}', end='')
+
+
+# заводим массив под результаты умножения
+def product(deque1, deque2):
+    product = [0 * i for i in range(len(deque1) + len(deque2))]
+    for i, element1 in enumerate(deque1):
+        for j, element2 in enumerate(deque2):
+            product_per_element = int(element1) * int(element2)
+            position = i + j
+            product[position] = product[position] + product_per_element
+
+    for i, element in enumerate(product):
+        if element > 15:
+            product[i + 1] = product[i + 1] + element // 16
+            product[i] = element % 16
+    product.reverse()
+    return product
+
+
+result_product = move_to_hexadecimal(product(eggs, spam))
+print('')
+print('Результат умножения Ваших чисел: ', end='')
+for i, element in enumerate(result_product, start=False):
+    if element != 0:
+        print(f'{element}', end='')
