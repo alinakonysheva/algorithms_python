@@ -92,26 +92,29 @@ for element in result_summ:
     print(f'{element}', end='')
 
 
-# заводим массив под результаты умножения
+# функция под умножение
 def product(deque1, deque2):
-    product = [0 * i for i in range(len(deque1) + len(deque2))]
+    # заводим массив под результаты умножения:
+    product = [0 * i for i in range(len(deque1) + len(deque2) + 1)]
+    # перебираем массивы поэлементно
     for i, element1 in enumerate(deque1):
         for j, element2 in enumerate(deque2):
+            #  перемножаем элементы
             product_per_element = int(element1) * int(element2)
+            # вставлем результат умножения элементов на соответствующее разрядное место
             position = i + j
             product[position] = product[position] + product_per_element
-
-    for i, element in enumerate(product):
-        if element > 15:
-            product[i + 1] = product[i + 1] + element // 16
-            product[i] = element % 16
+    # получился массив с числами, где есть переполнение в разрядах будущего числа
+    for i, item in enumerate(product):
+        if item >= 15:
+            product[i + 1] = product[i + 1] + item // 16
+            product[i] = item % 16
     product.reverse()
     return product
 
 
-result_product = move_to_hexadecimal(product(eggs, spam))
+result_product = move_to_hexadecimal(product(move_to_decimal(number1), move_to_decimal(number2)))
 print('')
 print('Результат умножения Ваших чисел: ', end='')
-for i, element in enumerate(result_product, start=False):
-    if element != 0:
-        print(f'{element}', end='')
+result = ''.join(str(element) for element in result_product).lstrip('0') or '0'
+print(f'{result}')

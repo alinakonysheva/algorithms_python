@@ -1,12 +1,20 @@
-numbers_into_letters = {10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
+# подаем на вход перевернутые числа
+a = [1, 5, 11]
+b = [1, 5]
+product = [0 * i for i in range(len(a) + len(b))]
 
+a.reverse()
+b.reverse()
 
-def move_to_hexadecimal(list1):
-    list_hex = list1.copy()
-    for i, element in enumerate(list1):
-        if element > 9:
-            list_hex.insert(i, numbers_into_letters[element])
-            del list_hex[i + 1]
-    return list_hex
+for i, element1 in enumerate(a):
+    for j, element2 in enumerate(b):
+        product[i + j] = product[i + j] + element1 * element2
 
-print(move_to_hexadecimal([12, 14, 0, 15, 10]))
+for i, element in enumerate(product):
+    if element >= 15:
+        product[i + 1] = product[i + 1] + element // 16
+        product[i] = element % 16
+
+product.reverse()
+result = ' '.join(str(e) for e in product).lstrip('0') or '0'
+print(f' После приведения к шестнадцатиричной системе {result}')
