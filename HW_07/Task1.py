@@ -1,33 +1,20 @@
 # 1. Отсортируйте по убыванию методом "пузырька" одномерный целочисленный массив,
 # заданный случайными числами на промежутке [-100; 100).
-#  Выведите на экран исходный и отсортированный массивы.
+# Выведите на экран исходный и отсортированный массивы.
 # Сортировка должна быть реализована в виде функции.
 # По возможности доработайте алгоритм (сделайте его умнее).
 
-# Проверим на умность, сравним реализацию алгоритма из лекции с альтернативной:
-import timeit
-# python -m timeit -n 100 -s "import Task1" "Task1.bubble1([-19, 0, -20, 40, 49, -15, 98, 80, 12])"
-# python -m timeit -n 100 -s "import Task1" "Task1.bubble1([-70, -90, 0, 56, -49, 5, -98, 24, 67])"
-# 100 loops, best of 5: 15.1 usec per loop
-# 100 loops, best of 5: 12.6 usec per loop
-
-# python -m timeit -n 100 -s "import Task1" "Task1.bubble1([-19, 0, -20, 40, 49, -15, 98, 80, 12])"
-# 100 loops, best of 5: 11.8 usec per loop
-# python -m timeit -n 100 -s "import Task1" "Task1.bubble1([-70, -90, 0, 56, -49, 5, -98, 24, 67])"
-# 100 loops, best of 5: 14.6 usec per loop
-# Вывод по времени: альтернативное решение не сильно умнее.
-
-# Проверим на умность по памяти, последнее число указывает на занимаемую память:
-#[21, 58, 31, -46, 15, 76, -84, 98, -39, -89]
-# ([-89, -84, -46, -39, 15, 21, 31, 58, 76, 98], 244)
-# ([-89, -84, -46, -39, 15, 21, 31, 58, 76, 98], 244)
-# Вывод по памяти:не особо умнее тоже.
-
+# Проверим на умность, сравним доработанную реализацию алгоритма из лекции (1 вариант) с немного измененной
+# лекционной (2 вариант) по двум показателям, немножко по памяти и по времени
+import cProfile
 import random
 import sys
 
-array1 = [random.randint(-100, 100) for _ in range(10)]
-print(array1)
+array1 = [random.randint(0, 100) for _ in range(10)]
+print(f'Входной массив: {array1}')
+print('#' * 50)
+array2 = array1.copy()
+
 
 def get_memory(dictionary):
     total = 0
@@ -45,15 +32,21 @@ initial = get_memory(locals())
 
 def bubble1(li):
     n = 1
-    while n < len(li):
+    permutation = True
+    while n < len(li) and permutation:
+        permutation = False
         for i in range(len(li) - n):
             if li[i] > li[i + 1]:
                 li[i], li[i + 1] = li[i + 1], li[i]
+                permutation = True
         n += 1
-    return li, get_memory(locals())
+    sorted_li = li
+    return f'{sorted_li}, занимаемая память: {get_memory(locals())}'
 
 
+print('Первый вариант сортировки: ')
 print(bubble1(array1))
+print('#' * 100)
 
 
 def bubble2(li):
@@ -61,9 +54,20 @@ def bubble2(li):
         for i in range(n):
             if li[i] > li[i + 1]:
                 li[i], li[i + 1] = li[i + 1], li[i]
+    sorted_li = li
+    return f'{sorted_li}, занимаемая память: {get_memory(locals())}'
 
-    return li, get_memory(locals())
 
+print('Второй вариант сортировки: ')
+print(bubble2(array2))
+print('#' * 100)
 
-print(bubble2(array1))
-
+cProfile.run('bubble1(array1)')
+cProfile.run('bubble2(array2)')
+# Оцениваем умность:
+# Заметная разница во времени начинается с длины входного массива пордяка 10**3:
+# Первый вариант: 14 function calls in 0.001 seconds, на два порядка быстрее, но занимаемая память чуть больше 18104
+# Второй вариант: 12 function calls in 0.079 seconds, медленнее, память экономичнее память 16180
+# Гигантская разница во времени с длиной входного массива пордяка 10**4:
+# Первый вариант: 14 function calls in 0.003 seconds, на 4 порядка быстрее второго варианта
+# Второй вариант: 12 function calls in 7.664 seconds
