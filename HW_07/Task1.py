@@ -10,7 +10,7 @@ import cProfile
 import random
 import sys
 
-array1 = [random.randint(0, 100) for _ in range(10)]
+array1 = [random.randint(-100, 100) for _ in range(10)]
 print(f'Входной массив: {array1}')
 print('#' * 50)
 array2 = array1.copy()
@@ -36,7 +36,7 @@ def bubble1(li):
     while n < len(li) and permutation:
         permutation = False
         for i in range(len(li) - n):
-            if li[i] > li[i + 1]:
+            if li[i] < li[i + 1]:
                 li[i], li[i + 1] = li[i + 1], li[i]
                 permutation = True
         n += 1
@@ -52,7 +52,7 @@ print('#' * 100)
 def bubble2(li):
     for n in range(len(li) - 1, 0, -1):
         for i in range(n):
-            if li[i] > li[i + 1]:
+            if li[i] < li[i + 1]:
                 li[i], li[i + 1] = li[i + 1], li[i]
     sorted_li = li
     return f'{sorted_li}, занимаемая память: {get_memory(locals())}'
