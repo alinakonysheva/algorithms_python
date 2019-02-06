@@ -30,17 +30,17 @@ def get_memory(dictionary):
 initial = get_memory(locals())
 
 
-def bubble1(li):
+def bubble1(lst):
     n = 1
     permutation = True
-    while n < len(li) and permutation:
+    while n < len(lst) and permutation:
         permutation = False
-        for i in range(len(li) - n):
-            if li[i] < li[i + 1]:
-                li[i], li[i + 1] = li[i + 1], li[i]
+        for i in range(len(lst) - n):
+            if lst[i] < lst[i + 1]:
+                lst[i], lst[i + 1] = lst[i + 1], lst[i]
                 permutation = True
         n += 1
-    sorted_li = li
+    sorted_li = lst
     return f'{sorted_li}, занимаемая память: {get_memory(locals())}'
 
 
@@ -48,13 +48,13 @@ print('Первый вариант сортировки: ')
 print(bubble1(array1))
 print('#' * 100)
 
-
-def bubble2(li):
-    for n in range(len(li) - 1, 0, -1):
+# "умность" этой реализации идентична "умности" того, что было дано на лекции
+def bubble2(lst):
+    for n in range(len(lst) - 1, 0, -1):
         for i in range(n):
-            if li[i] < li[i + 1]:
-                li[i], li[i + 1] = li[i + 1], li[i]
-    sorted_li = li
+            if lst[i] < lst[i + 1]:
+                lst[i], lst[i + 1] = lst[i + 1], lst[i]
+    sorted_li = lst
     return f'{sorted_li}, занимаемая память: {get_memory(locals())}'
 
 
