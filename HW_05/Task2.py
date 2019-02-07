@@ -4,6 +4,7 @@
 # Сумма чисел из примера: [‘C’, ‘F’, ‘1’], произведение - [‘7’, ‘C’, ‘9’, ‘F’, ‘E’].
 import collections
 
+
 # печать результата в виде числа, а не в виде массива
 def array_to_string(result):
     return ''.join(str(element) for element in result).lstrip('0') or '0'
