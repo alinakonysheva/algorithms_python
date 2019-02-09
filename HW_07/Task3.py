@@ -8,7 +8,8 @@ import random
 from collections import Counter
 
 m = 5
-array = [random.randint(0, 15) for _ in range(2 * m + 1)]
+array = [10, 5, 10, 11, 15, 10, 3, 11, 12, 0, 9]
+# [random.randint(0, 15) for _ in range(2 * m + 1)]
 print(f'Исходный массив: {array}')
 min_element = min(array)
 # все значения элементов списка лежит в диапазоне:
@@ -29,8 +30,8 @@ n = 0
 median = array[0]
 # в отсортированном списке кортежей высчитываем индекс кортежа, где лежит значение медианы:
 for tuple_ in sort:
+    n = n + tuple_[1]
     if n >= m:
         median = tuple_[0]
         break
-    n = n + tuple_[1]
 print(f'Медиана исходного массива: {median}')

@@ -35,7 +35,7 @@ def merge_sort(lst):
                 lst[f] = righthalf[j]
                 j = j + 1
             f = f + 1
-        # дозапишем в финальный массив оставшиеся бOльшие
+        # дозапишем в финальный массив оставшиеся бOльшие:
         while i < len(lefthalf):
             lst[f] = lefthalf[i]
             i = i + 1
